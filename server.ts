@@ -22,11 +22,9 @@ async function startServer() {
       const tableName = process.env.AIRTABLE_TABLE_NAME || "Leads";
 
       if (!apiKey || !baseId) {
-        console.warn("Airtable não configurado. Simulando sucesso (Apenas Log).");
-        console.log("Novo Lead:", { name, email, whatsapp });
-        // Simular delay de rede
-        await new Promise(r => setTimeout(r, 1000));
-        return res.status(200).json({ success: true, dummy: true });
+        return res.status(500).json({ 
+          error: "ATENÇÃO: As chaves do Airtable (AIRTABLE_API_KEY e AIRTABLE_BASE_ID) não foram configuradas." 
+        });
       }
 
       const url = `https://api.airtable.com/v0/${baseId}/${tableName}`;
@@ -47,14 +45,16 @@ async function startServer() {
                 DataCadastro: new Date().toISOString()
               }
             }
-          ]
+          ],
+          typecast: true
         })
       });
 
       if (!response.ok) {
         const errorData = await response.json();
         console.error("Airtable Error API:", errorData);
-        return res.status(500).json({ error: "Erro ao salvar no Airtable." });
+        const airtableError = errorData?.error?.message || errorData?.error?.type || JSON.stringify(errorData);
+        return res.status(500).json({ error: `Erro retornado pelo Airtable: ${airtableError} (Verifique se as colunas existem com os nomes exatos!)` });
       }
 
       res.status(200).json({ success: true });
