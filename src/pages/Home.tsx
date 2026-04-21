@@ -12,8 +12,8 @@ export default function Home() {
       <Background />
       
       {/* 1. HERO SECTION */}
-      <section className="pt-24 pb-20 px-6 max-w-7xl mx-auto relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-        <div className="space-y-8">
+      <section className="pt-32 pb-20 px-6 max-w-4xl mx-auto text-center relative z-10 flex flex-col items-center justify-center">
+        <div className="space-y-8 flex flex-col items-center">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -24,39 +24,34 @@ export default function Home() {
           
           <motion.h1 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
-            className="text-4xl md:text-6xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-white leading-tight"
+            className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-tight"
           >
             Automação <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan to-neon-purple">Inteligente com IA</span> para Profissionais da Beleza
           </motion.h1>
           
           <motion.p 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="text-lg text-gray-400 leading-relaxed max-w-xl"
+            className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-2xl mx-auto"
           >
             Descubra como automatizar atendimento, qualificar leads, organizar agendamentos e vender mais com inteligência artificial. Baixe gratuitamente o material completo da apresentação.
           </motion.p>
           
           <motion.ul 
             initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
-            className="space-y-3 font-medium text-gray-300"
+            className="flex flex-col md:flex-row flex-wrap justify-center gap-4 md:gap-8 font-medium text-gray-300 mt-4"
           >
             {[
               "Atendimento mais rápido",
               "Follow-up automático",
-              "Agendamentos organizados",
               "Mais vendas com menos operação"
             ].map((text, i) => (
-              <li key={i} className="flex items-center gap-3">
+              <li key={i} className="flex items-center gap-2 justify-center">
                 <CheckCircle className="w-5 h-5 text-neon-green flex-shrink-0" />
                 {text}
               </li>
             ))}
           </motion.ul>
         </div>
-
-        <motion.div initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.4 }}>
-          <LeadForm />
-        </motion.div>
       </section>
 
       {/* 2. O PROBLEMA REAL */}
@@ -184,7 +179,7 @@ export default function Home() {
       </section>
 
       {/* 8. CAPTURA FINAL */}
-      <section className="pb-32 px-6 max-w-4xl mx-auto text-center relative z-10">
+      <section id="formulario-captura" className="pb-32 px-6 max-w-4xl mx-auto text-center relative z-10 pt-16">
         <h2 className="text-3xl md:text-5xl font-bold mb-6">Baixe agora o PDF gratuito com o conteúdo da apresentação</h2>
         <p className="text-lg text-gray-400 mb-12">Preencha seus dados para acessar o material e entender como a inteligência artificial pode ajudar você a vender mais, atender melhor e ganhar tempo.</p>
         
