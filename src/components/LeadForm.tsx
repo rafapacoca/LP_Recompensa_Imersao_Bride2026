@@ -40,7 +40,14 @@ export function LeadForm() {
         body: JSON.stringify({ name, email, whatsapp })
       });
 
-      const data = await response.json();
+      const responseText = await response.text();
+      let data;
+      
+      try {
+        data = JSON.parse(responseText);
+      } catch (parseError) {
+        throw new Error('Falha de infraestrutura: A API não retornou os dados corretamente (Erro 500 no Vercel).');
+      }
 
       if (!response.ok) {
         throw new Error(data.error || 'Erro ao processar');
